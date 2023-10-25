@@ -8,3 +8,5 @@
 3. Click on **IP Configuration** 
 4. Click on `ipconfig1`, a popup should appear.
 5. Unselect the **Associate public IP address**
+
+
