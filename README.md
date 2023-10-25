@@ -1,21 +1,24 @@
 ## Azure
 
 #### Management Groups: 
-    - top-most level in the hierarchy.
-    - Useful for managing access, policies, and compliance across multiple Azure subscriptions.
+- top-most level in the hierarchy.
+- Useful for managing access, policies, and compliance across multiple Azure subscriptions.
 
 #### Subscriptions:
-    - Act as a container for billing and resource management.
-    - Can be grouped under management groups.
+- Act as a container for billing and resource management.
+- Can be grouped under management groups.
 
 #### Resource Groups:
-    - Containers that hold related resources for an Azure solution.
-    - Resources can only be a member of a single resource group.
+- Containers that hold related resources for an Azure solution.
+- Resources can only be a member of a single resource group.
 
 #### Resources:
-    - Individual instances like virtual machines, databases, or storage accounts.
-    - Must be a member of a resource group.
+- Individual instances like virtual machines, databases, or storage accounts.
+- Must be a member of a resource group.
 
+## Deploying App
+
+![](diagram.png)
 
 #### Step 1: Creating new SSH Key Pair
 1. Open GitBash terminal
@@ -92,7 +95,6 @@
 
 # update & upgrade
 sudo apt update -y
-sudo apt upgrade -y
 
 # install nginx
 sudo apt install nginx -y
@@ -129,5 +131,15 @@ npm install
 # start the app (could also use 'npm start')
 pm2 start app.js
 ```
+17. Go to Tags > "Owner" and "Wafa"
 
-#### Connecting to 
+#### Connecting via SSH
+1. Click your app VM
+2. On left-hand navigation, click *Connect*
+3. Click **Native SSH** and pop up will appear yesterday
+4. Type `~/.ssh/tech254-wafa-az-key` and copy and paste grey area into ssh file on GitBash terminal
+[Identity.url](..%2F..%2F..%2FAppData%2FLocal%2FTemp%2FIdentity.url)
+
+
+## Deploying DB
+
