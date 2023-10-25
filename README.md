@@ -95,6 +95,7 @@
 
 # update & upgrade
 sudo apt update -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -o Dpkg::Options::="--force-confnew"
 
 # install nginx
 sudo apt install nginx -y
@@ -104,7 +105,7 @@ sudo apt install sed
 # $ and / characters must be escaped by putting a backslash before them
 sudo sed -i "s/try_files \$uri \$uri\/ =404;/proxy_pass http:\/\/localhost:3000\/;/" /etc/nginx/sites-available/default
 
-# restart nginx 
+# restart nginx
 sudo systemctl restart nginx
 
 #enable nginx
@@ -142,4 +143,59 @@ pm2 start app.js
 
 
 ## Deploying DB
+
+#### Create DB VM
+1. Search VM
+2. Click Virtual Machine
+3. Click Create
+4. Virtual machine name = `tech254-wafa-first-app-vm`
+5. Image = Search for Image = `Ubuntu Pro 18.04 LTS - x64 Gen2`
+6. Security Type = Standard
+7. Size = Standard_B1s -1 vpcus
+8. Username = adminuser2
+9. SSH Public key source > Use existing key stored in Azure
+10. Stored keys = `tech254-wafa-az-key`
+11. Click HTTP and SSH for Security Inbound Rules
+11. Click Next to DISK
+12. sELECT Standard SSD
+13. Next To Networking
+14. Select your Virtual Network
+15. Subnet > public-subnet
+16. Check the *Delete Public IP and NIC when VM is deleted*
+14. Skip Management and Monitoring 
+15. Go to Advanced
+16. Copy and paste script to User Data:
+```commandline
+#!/bin/bash
+
+# Update and upgrade packages
+sudo apt update
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -o Dpkg::Options::="--force-confnew"
+
+# Acquire the MongoDB 3.2 key
+wget -qO - https://www.mongodb.org/static/pgp/server-3.2.asc | sudo apt-key add -
+echo "Acquired MongoDB 3.2 key successfully."
+
+# Add MongoDB repository to sources.list
+echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+# Update packages to fetch MongoDB 3.2
+sudo apt update
+
+# Install MongoDB 3.2 packages
+sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20
+echo "MongoDB 3.2 installed successfully."
+
+# Modify MongoDB configuration to allow all connections
+sudo sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/' /etc/mongod.conf
+echo "Modified MongoDB configuration to allow all connections."
+
+# Start MongoDB and enable auto-start
+sudo systemctl start mongod
+sudo systemctl enable mongod
+
+# Check MongoDB service status
+sudo systemctl status mongod
+```
+
 
