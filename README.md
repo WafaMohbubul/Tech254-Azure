@@ -122,7 +122,7 @@ sudo npm install pm2 -g
 # clone repo with app folder into folder called 'repo' - only needed if don't have the app folder already
 sudo apt install git -y
 
-git clone https://github.com/Anees-Asif/sparta-test-app.git repo
+git clone https://github.com/WafaMohbubul/sparta-test-app.git repo
 
 # install the app (must be after db vm is finished provisioning)
 cd repo
@@ -236,7 +236,7 @@ sudo npm install pm2 -g
 # clone repo with app folder into folder called 'repo' - only needed if don't have the app folder already
 sudo apt install git -y
 
-git clone https://github.com/shaluomehra/sparta_test_app.git
+git clone https://github.com/wafaMohbubul/sparta_test_app.git
 
 # install the app (must be after db vm is finished provisioning)
 cd sparta_test_app
