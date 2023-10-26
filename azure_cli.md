@@ -1,4 +1,21 @@
-## Kill app (Azure) from terminal
+## Azure blob storage
+- Microsoft Azure's object storage solution for the cloud.
+-  highly scalable 
+- store and serve large amounts of unstructured data
+- commonly used for backups, archiving, data lakes, IoT
+
+#### Blob Storage
+- store anything such as Videos, pictures
+- needs a storage account, you cannot create a blob without one.
+- unorganised and blobs go inside a container.
+- will need to create a new container.
+
+#### Types of Blob Storage?
+1. Block blobs
+2. Page blobs
+3. Append blobs
+
+## Kill App from terminal 
 
 1. Connect to App Vm via SSH to GitBash terminal
 2. Run `cd /` to be inside root
